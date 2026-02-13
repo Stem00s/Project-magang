@@ -1,0 +1,61 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_gitea
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+      - MYSQL_ROOT_PASSWORD=${GITEA_DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${GITEA_DB_NAME}
+      - MYSQL_USER=${GITEA_DB_USER}
+      - MYSQL_PASSWORD=${GITEA_DB_PASSWORD}
+    volumes:
+      - gitea_db_data:/var/lib/mysql
+    networks:
+      - internal
+
+  gitea:
+    image: gitea/gitea:1.22
+    container_name: gitea
+    restart: unless-stopped
+    depends_on:
+      - db
+
+    environment:
+      - TZ=${TZ}
+      - USER_UID=1000
+      - USER_GID=1000
+
+      # DB config (auto)
+      - GITEA__database__DB_TYPE=mysql
+      - GITEA__database__HOST=db:3306
+      - GITEA__database__NAME=${GITEA_DB_NAME}
+      - GITEA__database__USER=${GITEA_DB_USER}
+      - GITEA__database__PASSWD=${GITEA_DB_PASSWORD}
+
+      # Basic server config
+      - GITEA__server__APP_NAME=${GITEA_APP_NAME}
+      - GITEA__server__ROOT_URL=http://localhost:${GITEA_HTTP_PORT}/
+      - GITEA__server__SSH_PORT=${GITEA_SSH_PORT}
+
+    ports:
+      - 3000:3000
+      - 2223:22
+    volumes:
+      - gitea_data:/data
+
+    networks:
+      - internal
+      - edge
+
+volumes:
+  gitea_data:
+  gitea_db_data:
+
+networks:
+  edge:
+    name: edge
+    driver: bridge
+  internal:
+    name: internal
+    driver: bridge

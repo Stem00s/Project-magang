@@ -1,0 +1,5 @@
+# In the magang-stacks folder, create a .gitignore file with:
+echo "node_modules/" > .gitignore
+echo ".env" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo ".DS_Store" >> .gitignore
