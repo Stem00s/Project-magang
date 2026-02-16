@@ -1,16 +1,13 @@
-# 🚀 Nginx Docker Deployment
-
+#Nginx Docker Deployment
 Project ini dibuat untuk kerja praktek Cloud Engineer.
 
-## 📌 Deskripsi
 Deploy web server Nginx menggunakan Docker dan Docker Compose.
 
-## 📂 Struktur Folder
+#Struktur
 - Dockerfile → build image nginx custom
 - index.html → halaman web custom
 - docker-compose.yml → menjalankan container nginx
 
-## ▶ Cara Menjalankan
-
+#Run
 ```bash
 docker compose up -d --build
