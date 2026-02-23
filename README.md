@@ -1,7 +1,6 @@
-Gitea dan MySQL Docker Setup
+# Gitea dan MySQL Docker Setup
 
 Project ini menjalankan Gitea menggunakan Docker dan MySQL sebagai database.
-
 
 Apa itu Gitea?
 
@@ -15,7 +14,7 @@ Fitur-Fitur:
    - User management
    - SSH & HTTP clone
 
-Quick Start
+# Quick Start
 
 1. Clone Repository
 
@@ -24,13 +23,13 @@ Quick Start
 
 2. Buat File .env
    - cp .env
-   # edit nama, password dan ports sesuai dengan keinginan (namun disarankan tetap menggunakan default)
+    edit nama, password dan ports sesuai dengan keinginan (namun disarankan tetap menggunakan default)
 
 3. Jalankan Docker Compose
    
    - docker compose up -d
 
-   # Cek Container
+   Cek Container
    - docker ps
 
 4. Akses Gitea
@@ -41,12 +40,12 @@ Quick Start
    SSH
    - ssh://git@localhost:2222
 
-   # Gunakan PORT
+   Gunakan PORT
    - HTTP: 3000
    - SSH: 2222
    - MySQL: 3306
 
-# Ringkasan Command
+ # Ringkasan Command
 
    - docker compose up -d 
    (Digunakan untuk menjalankan docker container)
